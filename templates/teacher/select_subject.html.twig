@@ -1,0 +1,15 @@
+{# templates/teacher/select_subject.html.twig #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+    <h1>Select Subject</h1>
+    <form method="post" action="{{ path('teacher_marks') }}">
+        <select name="subject">
+            <option value="">-- Select a subject --</option>
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}">{{ subject.module }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

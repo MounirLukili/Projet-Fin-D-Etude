@@ -1,0 +1,71 @@
+{# templates/student/charts.html.twig #}
+{% extends "@EasyAdmin/page/content.html.twig" %}
+{% block content %}
+{% block stylesheets %}
+    
+    <link rel="stylesheet" href="{{ asset('css/studentstats.css') }}">
+{% endblock %}
+<div class="content">
+   <div class="title">
+      <h1>Veuillez choisir le module pour lequel vous voulez voir la variation de vos notes.</h1>
+
+        <form action="{{ path('app_charts') }}" method="get">
+   
+      <select name="module" onchange="this.form.submit()" class="dropdownmenu">
+        <option value="">Choisissez Une Matière</option>
+        {% for sujet in modules %}
+            <option value="{{ sujet.id }}" {% if selectedModule == sujet.id %}selected{% endif %}>
+                {{ sujet.module }}  {# Use module instead of name #}
+            </option>
+        {% endfor %}
+       </select>
+    </div>
+       </form>
+                         
+{# templates/student/charts.html.twig #}
+<div class="chart">
+       {% if scores %}
+    <canvas id="chartContainer"></canvas>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('chartContainer').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ scores|map(score => score.date|date('Y-m-d'))|json_encode|raw }}, // Your dates as labels
+            datasets: [{
+                label: 'Vos Notes Au Fil Du Temps',
+                data: {{ scores|map(score => score.note)|json_encode|raw }}, // Corresponding scores
+                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'category', // Changed from 'time' to 'category'
+                    labels: {{ scores|map(score => score.date|date('Y-m-d'))|json_encode|raw }},
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+       });
+
+    </script>
+     {% endif %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Include the date-fns adapter for Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</div>
+</div>
+{% endblock %}

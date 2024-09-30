@@ -1,0 +1,48 @@
+{# templates/teacher/stats.html.twig #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+{% block stylesheets %}
+    
+    <link rel="stylesheet" href="{{ asset('css/statsteacher.css') }}">
+{% endblock %}
+<div class="all">
+   <div class="conteneur">
+    <h1>Statistiques Des Etudiants</h1>
+
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    </div>
+</div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+        window.onload = function () {
+            var data = {{ data|json_encode|raw }};
+
+            var chartData = data.map(function(item) {
+                return {
+                    label: item.subject,
+                    y: item.average
+                };
+            });
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Moyenne Des Note Des Etudiants Par Module"
+                },
+                axisY: {
+                    title: "Note Moyenne"
+                },
+                data: [{
+                    type: "column",
+                    yValueFormatString: "#,##0.00",
+                    dataPoints: chartData
+                }]
+            });
+            chart.render();
+        }
+    </script>
+
+    
+{% endblock %}

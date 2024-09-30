@@ -1,0 +1,30 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+new_exercice:
+    path: /admin/exercice/new
+    controller: App\Controller\Teacher\t_ExerciceCrudController::newExercice
+
+edit_exercice:
+    path: /admin/exercice/{id}/edit
+    controller: App\Controller\Teacher\t_ExerciceCrudController::editExercice
+
+# config/routes.yaml
+teacher_dashboard:
+    path: /teacher
+    controller: App\Controller\Teacher\TeacherDashBoardController::index
+
+teacher_stats:
+    path: /teacher/stats
+    controller: App\Controller\Teacher\TeacherDashBoardController::stats
+
+teacher_exercice_new:
+    path: /teacher/exercice/new
+    controller: App\Controller\Teacher\ExerciceController::newExercice
+
+teacher_exercice_edit:
+    path: /teacher/exercice/{id}/edit
+    controller: App\Controller\Teacher\ExerciceController::editExercice
+
+

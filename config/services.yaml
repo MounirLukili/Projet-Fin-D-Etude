@@ -1,0 +1,38 @@
+services:
+    Symfony\Component\Security\Core\Security:
+        alias: security.helper
+
+    # Default configuration for services in this file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Services are not public by default
+
+    # Define all services under the 'App\' namespace
+    App\:
+        resource: '../src/*'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    # Specific configuration for controllers
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+        public: true       # Controllers must be public to be accessible as services
+
+
+    App\EventListener\ExerciceValidationSubscriber:
+        tags:
+            - { name: 'kernel.event_subscriber' }
+
+
+    App\EventListener\ResponseListener:
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.response', method: 'onKernelResponse' }    
+
+    App\Controller\Teacher\:
+        resource: '../src/Controller/Teacher'
+        tags: ['controller.service_arguments']            

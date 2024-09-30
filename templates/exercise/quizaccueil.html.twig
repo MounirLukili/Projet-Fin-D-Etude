@@ -1,0 +1,84 @@
+
+{% block body %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% block stylesheets %}
+    {{ encore_entry_link_tags('quiz_accueil') }}
+    {% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+</head>
+<body>
+    <div id="setup" class="container quizSetup">
+        <h1 class="titleQuiz">Configuration Du Quiz</h1>
+        <form id="setupForm">
+            <label for="subject" class="titleSubject">Choisissez Un Module:</label><br>
+            <select id="subject" name="subject" class="selectInput" >
+                {% for module in modules %}
+                    <option value="{{ module }}">{{ module }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="level"  class="titleSubject">Choisissez La Difficulté:</label><br>
+            <select id="level" name="level" class="selectInput">
+    {% for level in levels %}
+        <option value="{{ level }}">{{ level }}</option>
+    {% endfor %}
+</select>
+
+            <br>
+            <label for="numQuestions"  class="titleSubject">Choisissez Le Nombre De Questions:</label><br>
+            <input type="number" id="numQuestions" class="selectInput" name="numQuestions" min="1" max="10">
+            <br>
+            <div id="centerBtn">
+                <button type="button"  onclick="startQuiz()" class="btnStart">Commencer !</button>
+            </div>
+            
+        </form>
+    </div>
+
+    <div id="quizApp" class="quiz-app" style="display:none">
+        <div class="TowSection">
+            <div class="flex1" id="flex1">
+                <div class="quiz-info">
+                    <div class="category">Module: <span id="category-span"></span></div>
+                    <div class="count">Niveau De Difficulté: <span id="level-span"></span></div>
+                </div>
+                <div class="quiz-area">
+                    <h2 id="question"></h2>
+                    <div id="codeArea" style="height: 400px; width: 560px;"></div>
+                    <div id="choices" style="display: none;"></div> <!-- Multiple choice options for QCM -->
+                    <div id="ftb-input" class="ftb-input" style="display: none;"></div>
+                    
+                </div>
+                <button class="submit-button">Envoyer Votre Réponse</button>
+                <button class="skip-button">Passer A La Question Suivante</button>
+                <div class="final-score" style="display: none;">Votre Score Finale Est: <span id="final-score-span"></span></div>
+                <div class="api-output"></div>
+                <div class="error-count">Compte d'Erreurs: <span id="error-count-span">0</span></div>
+            </div>
+          <div class="otherSection">
+                <div class="results"></div>
+            </div>
+        </div>
+          
+    </div>
+   
+
+    <div class="Score"></div>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+
+    
+    
+
+</body>
+</html>
+{% endblock %}

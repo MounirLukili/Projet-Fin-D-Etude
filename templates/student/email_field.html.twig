@@ -1,0 +1,3 @@
+{% if 'ROLE_STUDENT' not in field.element.vars.attr['data-role'] %}
+    {{ include('@EasyAdmin/crud/field/email.html.twig') }}
+{% endif %}

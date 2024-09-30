@@ -1,0 +1,107 @@
+{# templates/admin/exercice_form.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ id is defined ? 'Edit Exercice' : 'New Exercice' }}</h1>
+
+    {{ form_start(form, {'attr': {'id': 'exercice-form'}}) }}
+
+    {{ form_widget(form.sujet) }}
+    {{ form_widget(form.niveau) }}
+    {{ form_widget(form.type) }}
+
+    <div id="dynamic-fields"></div>
+
+    <input type="hidden" id="contenu" name="contenu">
+    <input type="hidden" id="solution" name="solution">
+
+    <button type="submit">Save</button>
+
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const typeField = document.getElementById('type');
+            const dynamicFieldsContainer = document.getElementById('dynamic-fields');
+            const contenuField = document.getElementById('contenu');
+            const solutionField = document.getElementById('solution');
+
+            typeField.addEventListener('change', function() {
+                generateFields(typeField.value);
+            });
+
+            document.getElementById('exercice-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                createArraysAndSubmit();
+            });
+
+            function generateFields(type) {
+                dynamicFieldsContainer.innerHTML = ''; // Clear previous fields
+                if (type === 'QCM') {
+                    dynamicFieldsContainer.innerHTML = `
+                        <label for="question">Énoncé</label>
+                        <input type="text" id="question" name="question" required>
+                        <label for="option1">Option 1</label>
+                        <input type="text" id="option1" name="option1" required>
+                        <label for="option2">Option 2</label>
+                        <input type="text" id="option2" name="option2" required>
+                        <label for="option3">Option 3</label>
+                        <input type="text" id="option3" name="option3" required>
+                        <label for="option4">Option 4</label>
+                        <input type="text" id="option4" name="option4" required>
+                        <label for="correct_option">Correct Option</label>
+                        <input type="text" id="correct_option" name="correct_option" required>
+                    `;
+                } else if (type === 'FTB') {
+                    dynamicFieldsContainer.innerHTML = `
+                        <label for="question">Question with blanks</label>
+                        <input type="text" id="question" name="question" required>
+                        <label for="solution1">Solution 1</label>
+                        <input type="text" id="solution1" name="solution1" required>
+                        <label for="solution2">Solution 2</label>
+                        <input type="text" id="solution2" name="solution2" required>
+                    `;
+                } else if (type === 'OQ') {
+                    dynamicFieldsContainer.innerHTML = `
+                        <label for="question">Question</label>
+                        <input type="text" id="question" name="question" required>
+                        <label for="expected_output">Expected Output</label>
+                        <input type="text" id="expected_output" name="expected_output" required>
+                        <label for="correction">Correction</label>
+                        <input type="text" id="correction" name="correction" required>
+                    `;
+                }
+            }
+
+            function createArraysAndSubmit() {
+                const type = typeField.value;
+                if (type === 'QCM') {
+                    const question = document.getElementById('question').value;
+                    const option1 = document.getElementById('option1').value;
+                    const option2 = document.getElementById('option2').value;
+                    const option3 = document.getElementById('option3').value;
+                    const option4 = document.getElementById('option4').value;
+                    const correctOption = document.getElementById('correct_option').value;
+                    contenuField.value = JSON.stringify([question, option1, option2, option3, option4]);
+                    solutionField.value = JSON.stringify([correctOption]);
+                } else if (type === 'FTB') {
+                    const question = document.getElementById('question').value;
+                    const solution1 = document.getElementById('solution1').value;
+                    const solution2 = document.getElementById('solution2').value;
+                    contenuField.value = JSON.stringify([question]);
+                    solutionField.value = JSON.stringify([solution1, solution2]);
+                } else if (type === 'OQ') {
+                    const question = document.getElementById('question').value;
+                    const expectedOutput = document.getElementById('expected_output').value;
+                    const correction = document.getElementById('correction').value;
+                    contenuField.value = JSON.stringify([question]);
+                    solutionField.value = JSON.stringify([expectedOutput, correction]);
+                }
+                document.getElementById('exercice-form').submit();
+            }
+        });
+    </script>
+{% endblock %}

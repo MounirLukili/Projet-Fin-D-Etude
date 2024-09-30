@@ -1,0 +1,20 @@
+
+
+.balise {
+    background: whitesmoke;
+    height: 50%;
+    border-radius: 10px;
+    position: relative;
+    top: 120px;
+    box-shadow: 0px 0 2px gray;
+}
+.mb-4{
+    font-size: medium;
+    font-weight: bold;
+    color: #575757ab;}
+
+
+
+.btnStart , .start{
+    text-align: center;
+}

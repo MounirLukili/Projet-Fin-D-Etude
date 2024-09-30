@@ -1,0 +1,30 @@
+.card-text{
+ font-weight: bold;
+ text-align: center;
+ text-transform: capitalize;
+}
+.cardRestPass{
+  width: 500px;
+  left: 50%;
+  position: relative;
+  top: 100px;
+  transform: translate(-50%);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.295);
+}
+.btnRest{
+  text-decoration: none;
+  background: #0d6efd;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  width: 100px;
+  text-align: center;
+  
+}
+@media (max-width: 576px) {
+  .cardRestPass {
+  width: 382px;
+    
+  }
+  }

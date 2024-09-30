@@ -1,0 +1,30 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+    {{ parent() }}
+     {% block stylesheets %}
+    {{ encore_entry_link_tags('temp') }}
+    <link rel="stylesheet" href="{{ asset('css/adminpdf.css') }}">
+    {% endblock %}
+    
+    <div class="mb-3">
+            
+            </div>
+    <div class="center-form">
+    <h1>Ici Vous pouvez télécharger un relevé de notes pour un étudiant:</h1>
+        <form method="post" class="p-4 shadow rounded bg-light"> <!-- Added padding, shadow, and rounded corners for aesthetics -->
+            
+            
+            
+            <div class="mb-3"> <!-- Bootstrap class for margin bottom -->
+                <label for="studentSelect" class="form-label">Choisissez Un Etudiant</label> <!-- Added a label for accessibility -->
+                <select id="studentSelect" name="student" class="form-select"> <!-- Using Bootstrap form-select class for styling -->
+                    {% for student in students %}
+                        <option value="{{ student.id }}">{{ student.prenom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Télécharger Le Relevé De Notes</button> <!-- Bootstrap button styling -->
+        </form>
+    </div>
+{% endblock %}

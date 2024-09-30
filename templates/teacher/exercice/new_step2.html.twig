@@ -1,0 +1,70 @@
+{# templates/teacher/exercice/step2.html.twig #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+    <h1>Add New Exercise - Step 2</h1>
+    
+    <form id="step2Form">
+        <input type="hidden" name="sujet" value="{{ sujet }}">
+        <input type="hidden" name="niveau" value="{{ niveau }}">
+        <input type="hidden" name="type" value="{{ type }}">
+        
+        {% if type == 'QCM' %}
+            <div class="form-group">
+                <label for="qcm_contenu">QCM Contenu</label>
+                <textarea id="qcm_contenu" name="qcm_contenu" class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="qcm_solution">QCM Solution</label>
+                <textarea id="qcm_solution" name="qcm_solution" class="form-control" required></textarea>
+            </div>
+        {% elseif type == 'FTB' %}
+            <div class="form-group">
+                <label for="ftb_contenu">FTB Contenu</label>
+                <textarea id="ftb_contenu" name="ftb_contenu" class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="ftb_solution1">FTB Solution 1</label>
+                <input type="text" id="ftb_solution1" name="ftb_solution1" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="ftb_solution2">FTB Solution 2</label>
+                <input type="text" id="ftb_solution2" name="ftb_solution2" class="form-control" required>
+            </div>
+        {% elseif type == 'OQ' %}
+            <div class="form-group">
+                <label for="oq_contenu">OQ Contenu</label>
+                <textarea id="oq_contenu" name="oq_contenu" class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="oq_expected_output">OQ Expected Output</label>
+                <input type="text" id="oq_expected_output" name="oq_expected_output" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="oq_correction">OQ Correction</label>
+                <input type="text" id="oq_correction" name="oq_correction" class="form-control" required>
+            </div>
+        {% endif %}
+        <button type="button" class="btn btn-success" id="submitButton">Submit</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitButton = document.getElementById('submitButton');
+            submitButton.addEventListener('click', function() {
+                const form = document.getElementById('step2Form');
+                const formData = new FormData(form);
+
+                fetch('{{ path('custom_exercice_add') }}', {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.text())
+                .then(html => {
+                    document.body.innerHTML = html;
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+{% endblock %}

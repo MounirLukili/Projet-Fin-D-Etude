@@ -1,0 +1,23 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+{% block stylesheets %}
+    
+    <link rel="stylesheet" href="{{ asset('css/studentstart.css') }}">
+{% endblock %}
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+
+    <div class="max-w-4xl mx-auto px-4 py-8 balise">
+       <div class="start"> <h1 class="text-2xl font-bold text-gray-800 mb-4">Vous etes sur le point de commencer un exercice</h1></div>
+        <p class="mb-4">Veuillez bien vérifier vos choix avant de commencer.</p>
+        <p class="mb-4">Sachez que cet exercisseur a un objectif éducationnel , rien ne sert d'avoir des 100% si ce n'est pas pour apprendre</p>
+        <p class="mb-4">Les qcm sont plutot rapide à faire , les ftb sont un peu plus long , finalement faut compter ~3min par open question</p>
+        <p class="mb-4">Notez que l'évaluation est automatique:bien suivre les consignes !</p>
+             <div class="btnStart">
+                 <a href="{{ path('quiz_setup') }}" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Start Exercise
+                     </a>
+        </div>
+    </div>
+{% endblock %}

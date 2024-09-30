@@ -1,0 +1,302 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1ccb1c;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  
+  .code-snippet {
+    background-color: #f4f4f4; /* Light grey background for the code snippet */
+    border: 1px solid #ccc; /* Light border for the snippet box */
+    padding: 10px; /* Padding around the text in the snippet */
+    white-space: pre-wrap; /* Maintains whitespace formatting */
+    
+  }
+  
+  
+  
+  
+  .ftb-input {
+    padding: 3px;
+    margin: 0 2px; /* Small margins for better spacing */
+    font-size: 16px; /* Match the font size to your design */
+    display: inline-block; /* Ensures it does not break the flow */
+    width: auto; /* Adjusts based on content length but has a minimum */
+    min-width: 50px; /* Minimum width for usability */
+    font-size: 16px;
+  }
+  
+  /* Quiz Application Container */
+  .flex1{
+   
+    border-radius: 10px;
+    padding: 20px;
+    margin-left: 10px;
+    width: 600px;
+    background-color: whitesmoke;
+    border: 2px solid #eee;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.418);
+    border-radius: 10px;
+  
+  }
+  .TowSection{
+    display: flex;
+    justify-content:center;
+  }
+  .quiz-app {
+   
+   
+    padding: 20px;
+    margin: 20px;
+  }
+  .flex2{
+    margin: 40px;
+    background-color: whitesmoke;
+    border: 2px solid #eee;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.418);
+    border-radius: 10px;
+  }
+  
+  /* Quiz Information Header */
+  .quiz-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .quiz-info .category, .quiz-info .count {
+    font-size: 16px;
+   
+  }
+  .back{
+    background-color: black;
+  }
+  /* Quiz Question Area */
+  .quiz-area h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 150px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    resize: none; /* Disable resizing */
+  }
+  
+  /* Submit Button */
+  .submit-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Results Display */
+  .showR {
+    width: 400px;
+    padding: 20px;
+    position: relative;
+    top: 105px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #00000021;
+    background: white;
+    margin: 60px;
+  }
+  
+  
+  
+  
+  .final-score {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: none; /* Hide by default */
+  }
+  
+  .skip-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #ffc107; /* Example: amber color for skip button */
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .skip-button:hover {
+    background-color: #e0a800;
+  }
+  
+  
+  
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .quiz-app {
+        padding: 10px;
+    }
+    .quiz-info .category, .quiz-info .count {
+        font-size: 14px;
+    }
+  
+  
+    
+    /* Quiz Selection Container */
+  .setup {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .setup h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .setupForm {
+    display: flex;
+    flex-direction: column;
+  }
+  .setupForm label {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .setupForm select, .setupForm input[type="number"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  .otherSection, .results {
+    display: block; /* This should be the case when results need to be shown */
+  }
+  
+  .setupForm button {
+    padding: 15px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .setupForm button:hover {
+    background-color: #0056b3;
+  }
+  }
+    /* start style index.html */
+  /*.container{
+    width: 500px;
+    border-radius: 5px;
+    padding: 25px;
+    background: white;
+    box-shadow: 5px 5px 5px #00000024;
+   
+  }*/
+  
+  @media (max-width:576) {
+    .container{
+      border-radius: 5px;
+      padding: 25px;
+      background: white;
+      box-shadow: 5px 5px 5px #00000024;
+    
+    
+    }
+  }
+  
+  .titleQuiz{
+    text-align: center;
+    margin: 20px;
+    font-family: system-ui;
+    color: #007bff;
+  }
+  .titleSubject{
+    font-weight: bold;
+    color: gray;
+    font-family: system-ui;
+    text-transform: capitalize;
+  }
+  .selectInput{
+    width: 100%;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    outline: none;
+  }
+  .btnStart{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #007bffbd;
+    font-weight: bold;
+    background: #007bffbd;
+    color: white;
+    margin-top: 10px;
+    transition: 0.3s;
+  }
+  #centerBtn{
+    text-align: center;
+  }
+  
+  .btnStart:hover{
+    background-color: #007bff;
+  }
+  .error-count{
+    margin-top: 13px;
+  }
+  #error-count-span{
+    font-weight: bold;
+    color: red;
+  }
+  #level-span{
+    font-weight: bold;
+    color: green;
+  }
+  #category-span{
+    font-weight: bold;
+    color: #007bff;
+  }
+  .category,.count,
+  .error-count{
+    font-weight: bold;
+    color: gray;
+  }
+  .category{
+    font-weight: bold;
+    color: gray;
+  }
+  .error-count{
+    font-weight: bold;
+    color: gray;
+  }
+    /* end style index.html */
+  
+    
+  
+  
+  

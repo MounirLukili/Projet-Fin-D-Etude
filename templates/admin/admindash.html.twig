@@ -1,0 +1,21 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+{% block stylesheets %}
+    
+    <link rel="stylesheet" href="{{ asset('css/adminaccueil.css') }}">
+{% endblock %}
+<div class="conteneur">
+    <div class="card">        
+       <div class="titre"> 
+        <h3>Bienvenu à votre espace Administrateur !</h1>
+       </div>
+       <div class="contenu">
+        <p class="mb-4">Vous avez accès à la totalité des utilisateurs du site.
+         Vous pouvez en ajouter,supprimer ou les modifier.</p>
+        <p class="mb-4">Vous pouvez voir l'ensemble des notes des étudiants ayant effectué des exercices.</p>
+        <p class="mb-4">Vous pouvez générer un relevé de note pour un étudiant de votre choix.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

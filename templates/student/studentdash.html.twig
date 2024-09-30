@@ -1,0 +1,24 @@
+{% extends "@EasyAdmin/page/content.html.twig" %}
+
+{% block content %}
+{% block stylesheets %}
+    
+    <link rel="stylesheet" href="{{ asset('css/studentaccueil.css') }}">
+{% endblock %} 
+
+    <div class="conteneur">   
+        <div class="card">
+            <div class="titre"> 
+            <h3>Bienvenue dans votre espace étudiant  ! </h3>
+            </div>
+            <div class="contenu">
+                <p>Vous pouvez dès à présent:</p>
+                <p>Accéder à la liste des participants  </p>
+                <p>Commencer à vous exercer </p>
+                <p>Consulter vos notes </p>
+                <p>Voir les graph (stats) de vos notes </p>
+                <p>modifier votre profil</p>
+            </div>
+        </div>   
+    </div>     
+{% endblock %}

@@ -1,0 +1,35 @@
+@media (max-width: 575px) {
+    .box-form{
+        position: relative;
+        top: 47px; 
+    }
+    .ImgCover{
+        margin-bottom: 10px;
+        position: relative;
+        top: 21px;
+    }
+   
+}
+
+/* //large screen for desktop */
+@media (min-width:1200px){
+.mR{
+    position: relative;
+    top: 333px;
+}
+.allDiv{
+    position: relative;
+    top: 150px;
+}
+.formSttle{
+        /* background: black; */
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #eee;
+        position: relative;
+        top: 20px;
+        box-shadow: 0 0 2px;
+}
+
+}
+

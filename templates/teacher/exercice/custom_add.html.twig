@@ -1,0 +1,171 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+{% block stylesheets %}
+    
+    <link rel="stylesheet" href="{{ asset('css/addexercice.css') }}">
+{% endblock %}
+
+<div class="debut">
+    
+    
+    <form id="exerciseForm" method="post" action="{{ path('custom_exercice_add') }}">
+        <!-- Step 1 -->
+        <div id="step1" class="step2">
+        <h1>Ajouter Un Nouveau Exercice</h1>
+            <h2>Etape 1: Info De l'Exercice</h2>
+            <div class="form-group">
+                <label for="sujet">Sujet</label>
+                <select id="sujet" name="sujet" class="form-control" required>
+                    {% for sujet in sujets %}
+                        <option value="{{ sujet.id }}">{{ sujet.module }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="niveau">Niveau</label>
+                <select id="niveau" name="niveau" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select id="type-selector" name="type" class="form-control">
+                    <option value="QCM">QCM</option>
+                    <option value="FTB">FTB</option>
+                    <option value="OQ">OQ</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary" id="nextButton">Suivant</button>
+        </div>
+</div>
+        <!-- Step 2 -->
+        <div id="step2" style="display: none;" class="step2">
+            <h2>Etape 2: informations complémentaires</h2>
+            <input type="hidden" id="hidden-sujet" name="hidden-sujet">
+            <input type="hidden" id="hidden-niveau" name="hidden-niveau">
+            <input type="hidden" id="hidden-type" name="hidden-type">
+
+            <!-- QCM Fields -->
+            <div id="qcm-fields" class="form-group" style="display: none;">
+                <label for="qcm_enonce">Enoncé Du QCM
+                </label>
+                <textarea id="qcm_enonce" name="qcm_enonce" class="form-control" placeholder="Entrez l'énoncé de la question pour le QCM."></textarea>
+
+                <label for="qcm_solution1">Proposition 1
+                </label>
+                <textarea id="qcm_solution1" name="qcm_solution1" class="form-control" placeholder="Entrez la première réponse possible."></textarea>
+
+                <label for="qcm_solution2">Proposition 2
+                </label>
+                <textarea id="qcm_solution2" name="qcm_solution2" class="form-control" placeholder="Entrez la deuxième réponse possible."></textarea>
+
+                <label for="qcm_solution3">Proposition 3
+                </label>
+                <textarea id="qcm_solution3" name="qcm_solution3" class="form-control" placeholder="Entrez la troisième réponse possible."></textarea>
+
+                <label for="qcm_solution4">Proposition 4
+                </label>
+                <textarea id="qcm_solution4" name="qcm_solution4" class="form-control" placeholder="Entrez la quatrième réponse possible."></textarea>
+
+                <label for="qcm_reponse">Réponse
+                    <i class="fas fa-exclamation-triangle hadari" data-toggle="tooltip" data-placement="top" title="La réponse attendue doit etre egale à une des 4 propositions"></i>
+                </label>
+                <textarea id="qcm_reponse" name="qcm_reponse" class="form-control" placeholder="Entrez la réponse correcte pour le QCM."></textarea>
+            </div>
+
+            <!-- FTB Fields -->
+            <div id="ftb-fields" class="form-group" style="display: none;">
+                <label for="ftb_contenu">Contenu Du FTB
+                    <i class="fas fa-exclamation-triangle hadari" data-toggle="tooltip" data-placement="top" title="Votre texte doit avoir '___' comme vide à remplir."></i>
+                </label>
+                <textarea id="ftb_contenu" name="ftb_contenu" class="form-control"></textarea>
+
+                <label for="ftb_solution1">Solution 1
+                    
+                </label>
+                <input type="text" id="ftb_solution1" name="ftb_solution1" class="form-control" placeholder="Entrez la première réponse correcte pour remplir le vide.">
+
+                <label for="ftb_solution2">Solution 2 (Optionnel)
+              
+                </label>
+                <input type="text" id="ftb_solution2" name="ftb_solution2" class="form-control" placeholder="Entrez la deuxième réponse correcte pour remplir le vide si elle existe">
+
+                <label for="ftb_solution3">Solution 3 (Optionnel)
+                    
+                </label>
+                <input type="text" id="ftb_solution3" name="ftb_solution3" class="form-control" placeholder="Entrez la troisième réponse correcte pour remplir le vide si elle existe.">
+
+                <label for="ftb_solution4">Solution 4 (Optionnel)
+                </label>
+                <input type="text" id="ftb_solution4" name="ftb_solution4" class="form-control" placeholder="Entrez la quatrième réponse correcte pour remplir le vide si elle existe">
+            </div>
+
+            <!-- OQ Fields -->
+            <div id="oq-fields" class="form-group" style="display: none;">
+                <label for="oq_contenu">Contenu Du OQ
+                    <i class="fas fa-exclamation-triangle hadari" data-toggle="tooltip" data-placement="top" title="Demander à l'utilisateur de tester sa fonction sur un exemple."></i>
+                </label>
+   <textarea id="oq_contenu" name="oq_contenu" class="form-control" placeholder="Entrez le contenu ou la question pour la question ouverte"></textarea>
+                <label for="oq_expected_output">Retour Attendu (Expected Output)
+<i class="fa fa-info-circle info" data-toggle="tooltip" data-placement="top" title="cela doit correspondre au résultat de l'application correcte du code sur l'exemple que vous avez donné à l'utilisateur"></i>
+                </label>
+                <input type="text" id="oq_expected_output" name="oq_expected_output" class="form-control" placeholder="Entrez le résultat attendu ou la réponse à la question ouverte." >
+
+                <label for="oq_correction">Correction
+
+                </label>
+                <input type="text" id="oq_correction" name="oq_correction" class="form-control" placeholder="Cela doit correspondre au résultat de l'application correcte du code sur l'exemple ">
+            </div>
+            <div class="flex">
+            <button type="button" class="btn btn-secondary" id="prevButton">Retour</button>
+            <button type="submit" class="btn btn-success" id="submitButton">Ajouter</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const nextButton = document.getElementById('nextButton');
+            const prevButton = document.getElementById('prevButton');
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+
+            const sujetField = document.getElementById('sujet');
+            const niveauField = document.getElementById('niveau');
+            const typeSelector = document.getElementById('type-selector');
+
+            const hiddenSujet = document.getElementById('hidden-sujet');
+            const hiddenNiveau = document.getElementById('hidden-niveau');
+            const hiddenType = document.getElementById('hidden-type');
+            
+            nextButton.addEventListener('click', function() {
+                // Save step 1 values to hidden fields
+                hiddenSujet.value = sujetField.value;
+                hiddenNiveau.value = niveauField.value;
+                hiddenType.value = typeSelector.value;
+
+                // Show/Hide relevant fields based on selected type
+                document.getElementById('qcm-fields').style.display = typeSelector.value === 'QCM' ? 'block' : 'none';
+                document.getElementById('ftb-fields').style.display = typeSelector.value === 'FTB' ? 'block' : 'none';
+                document.getElementById('oq-fields').style.display = typeSelector.value === 'OQ' ? 'block' : 'none';
+
+                // Show step 2 and hide step 1
+                step1.style.display = 'none';
+
+                step2.style.display = 'block';
+            });
+
+            prevButton.addEventListener('click', function() {
+                // Show step 1 and hide step 2
+                step1.style.display = 'block';
+                step2.style.display = 'none';
+            });
+
+            // Initialize Bootstrap tooltips
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+{% endblock %}

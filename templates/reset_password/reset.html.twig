@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('reset') }}
+    {% endblock %}
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">Réinitialiser Votre Mot de Passe</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">euillez entrer votre nouveau mot de passe ci-dessous.</p>
+                    {{ form_start(resetForm, {'attr': {'class': 'form-horizontal'}}) }}
+                        <div class="mb-3">
+                            {{ form_label(resetForm.plainPassword, '', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(resetForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(resetForm.plainPassword) }}
+                        </div>
+                      <div class ="btnSubmit">
+                        <button type="submit" class="btn btn-primary">Reset Mot De Passe</button>
+                        </div>
+                    {{ form_end(resetForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+        .center-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensures that the form is vertically centered in the viewport */
+        }
+        .center-form form {
+            width: 100%; /* Adjusts the width as needed */
+            max-width: 600px; /* Limits the maximum width of the form */
+        } 
+        

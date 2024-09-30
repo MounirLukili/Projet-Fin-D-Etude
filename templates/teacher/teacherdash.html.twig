@@ -1,0 +1,27 @@
+{# templates/teacher/teacherdash.html.twig #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+{% block stylesheets %}
+    
+    <link rel="stylesheet" href="{{ asset('css/accueilteacher.css') }}">
+{% endblock %}
+
+    <div class="card">
+            <div class="titre"> 
+            <h3>Bienvenue dans votre espace Enseignant ! </h3>
+            </div>
+
+            <div class="contenu">
+                <p class="mb-4">Vous pouvez dès à présent:</p>
+                <p class="mb-4">Accéder à la liste des étudiants [Users] </p>
+                <p class="mb-4">Consulter la liste des notes </p>
+                <p class="mb-4">Voir un graph affichant la moyenne par matière pour un meilleur suivi des performances des étudians.</p>
+                <p class="mb-4">Gérer les exercices : En ajouter , modifier ou supprimer </p>
+                <p class="mb-4">Faites bien attention à l'ajout des exercices et bien suivre les renseignements pour le faire</h3>
+                <p class="mb-4">Ajouter, Modifier ou Supprimer des modules (Sujets)</p>
+                <p class="mb-4">modifier votre profil</p>
+            </div>
+   </div>
+</div>   
+{% endblock %}
